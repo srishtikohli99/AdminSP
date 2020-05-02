@@ -743,6 +743,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                               {% if data %} 
                                             {% for item in data %}
                                             <tr>
                                                 <th scope="row">{{item.ids}}</th> 
@@ -751,6 +752,10 @@
                                                 <!-- <td>@mdo</td> -->
                                             </tr>
                                             {% endfor %}
+                                            </tbody>
+                                            {% else %}
+                                            <p>No aasociations observed...</p>
+                                            {% endif %}
                                             <!-- <tr>
                                                 <th scope="row">2</th>
                                                 <td>Jacob</td>
@@ -763,7 +768,7 @@
                                                 <td>the Bird</td>
                                                 <td>@twitter</td>
                                             </tr> -->
-                                            </tbody>
+                                            
                                         </table>
                                     </div>
                                 </div>
