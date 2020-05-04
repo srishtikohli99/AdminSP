@@ -11,16 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
-    <!--
-    =========================================================
-    * ArchitectUI HTML Theme Dashboard - v1.0.0
-    =========================================================
-    * Product Page: https://dashboardpack.com
-    * Copyright 2019 DashboardPack (https://dashboardpack.com)
-    * Licensed under MIT (https://github.com/DashboardPack/architectui-html-theme-free/blob/master/LICENSE)
-    =========================================================
-    * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-    -->
+<!--      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+ 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <link href="{% static 'remodel/assets/main.css' %}" rel="stylesheet">
 </head>
 <body>
@@ -807,11 +803,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <h6 class="text-muted text-uppercase font-size-md opacity-5 font-weight-normal">Top Authors</h6>
+                                                <h6 class="text-muted text-uppercase font-size-md opacity-5 font-weight-normal">Special Assistance</h6>
                                                 <div class="scroll-area-sm">
                                                     <div class="scrollbar-container">
-                                                        <ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
-                                                            <li class="list-group-item">
+                                                        <ul id = "special" class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
+                                                           <!--  <li class="list-group-item">
                                                                 <div class="widget-content p-0">
                                                                     <div class="widget-content-wrapper">
                                                                         <div class="widget-content-left mr-3">
@@ -920,8 +916,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </li>
-                                                        </ul>
+                                                            </li> -->
+                                                        </ul> 
                                                     </div>
                                                 </div>
                                             </div>
@@ -1373,4 +1369,171 @@
         </div>
     </div>
 <script type="text/javascript" src="{% static 'remodel/assets/scripts/main.js' %}"></script></body>
+
+
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
+<!--  <!-<script src="https://www.gstatic.com/firebasejs/init.js"></script>  -->
+
+<script type="text/javascript">
+var firebaseConfig = {
+    
+    apiKey: "AIzaSyBjTfPsSL-uARU1Yrfu3kM79Ydx_ebdM_4",
+    authDomain: "specialnotification.firebaseapp.com",
+    databaseURL: "https://specialnotification.firebaseio.com",
+    projectId: "specialnotification",
+    storageBucket: "specialnotification.appspot.com",
+    messagingSenderId: "600352558276",
+    appId: "1:600352558276:web:138853d876e1b08e878d91",
+    measurementId: "G-S4C6NST3N8"
+  };
+
+console.log("hi4");
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  var ref = firebase.database().ref();  
+  // console.log(ref)                         
+    ref.on("value", function(snapshot){
+        console.log("hi2")
+        var LOCALFILE = snapshot.val();
+        init(LOCALFILE);
+        fillseats(LOCALFILE);
+    }, function(error) {
+    console.error(error);
+});
+
+function init(LOCALFILE)
+
+    {
+        console.log("hi3")
+  
+    }    
+
+function fillseats(LOCALFILE)
+    {
+        console.log("hi")
+        var parent = document.getElementById("special");
+                    parent.innerHTML=""
+        var data = LOCALFILE;
+        var customer = data.customer;
+        Object.keys(customer).forEach(
+            function(k)
+            {
+                if(customer[k].in_store == true)
+                {
+
+                    
+                    var element = document.getElementById("special");
+                    var li1 = document.createElement("li");
+                    li1.className = "list-group-item";
+                    var div1 = document.createElement("div");
+                    div1.className = "widget-content p-0";
+                    var div2 = document.createElement("div");
+                    div2.className = "widget-content-wrapper";
+                    var div3 = document.createElement("div");
+                    div3.className = "widget-content-left mr-3";
+                    var img1 = document.createElement("img");
+                    img1.className = "rounded-circle";
+                    var url1 = "{% static '" ;
+                    var url2 = "' %}";
+                    var url = url1.concat(customer[k].img);
+                    url = url.concat(url2)
+                    img1.src = url;
+                    console.log(url)
+                    element.appendChild(li1);
+                    li1.appendChild(div1);
+                    div1.appendChild(div2);
+                    div2.appendChild(div3);
+                    div3.appendChild(img1);
+                    var div4 = document.createElement("div");
+                    div4.className = "widget-content-left";
+                    var div5 = document.createElement("div");
+                    div5.className = "widget-heading";
+                    div2.appendChild(div4);
+                    div4.appendChild(div5);
+                    div5.innerHTML = customer[k].name;
+                    var div6 = document.createElement("div");
+                    div6.className = "widget-subheading";
+                    div6.innerHTML = customer[k].p;
+                    div4.appendChild(div6);
+                    var div7 = document.createElement("div");
+                    div7.className = "widget-content-right";
+                    div2.appendChild(div7);
+                    var div8 = document.createElement("div");
+                    div8.className = "font-size-xlg text-muted";
+                    div7.appendChild(div8);
+                    var small1 = document.createElement("small");
+                    small1.className = "opacity-5 pr-1";
+                    small1.innerHTML= "Customer ID : ";
+                    div8.appendChild(small1);
+                    var span1 = document.createElement("span");
+                    div8.appendChild(span1);
+                    span1.innerHTML = customer[k].id;
+                }
+
+                    
+                
+            }
+        );
+    }
+
+
+
+
+
+
+
+</script>
+
+
+<!-- <script>
+var element = document.getElementById("special");
+var li1 = document.createElement("li")
+li1.className = "list-group-item"
+var div1 = document.createElement("div")
+div1.className = "widget-content p-0"
+var div2 = document.createElement("div")
+div2.className = "widget-content-wrapper"
+var div3 = document.createElement("div")
+div3.className = "widget-content-left mr-3"
+var img1 = document.createElement("img")
+img1.className = "rounded-circle"
+img1.src = "{% static 'remodel/assets/images/avatars/9.jpg' %}"
+element.appendChild(li1)
+li1.appendChild(div1)
+div1.appendChild(div2)
+div2.appendChild(div3)
+div3.appendChild(img1)
+var div4 = document.createElement("div")
+div4.className = "widget-content-left"
+var div5 = document.createElement("div")
+div5.className = "widget-heading"
+div2.appendChild(div4)
+div4.appendChild(div5)
+div5.innerHTML = "Ella-Rose Henry"
+var div6 = document.createElement("div")
+div6.className = "widget-subheading"
+div6.innerHTML = "Special Assistance"
+div4.appendChild(div6)
+var div7 = document.createElement("div")
+div7.className = "widget-content-right"
+div2.appendChild(div7)
+var div8 = document.createElement("div")
+div8.className = "font-size-xlg text-muted"
+div7.appendChild(div8)
+var small1 = document.createElement("small")
+small1.className = "opacity-5 pr-1"
+small1.innerHTML= "Customer ID : "
+div8.appendChild(small1)
+var span1 = document.createElement("span")
+div8.appendChild(span1)
+span1.innerHTML = "12345"
+</script> -->
+
+
+
+
 </html>
