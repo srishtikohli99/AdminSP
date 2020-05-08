@@ -1437,11 +1437,12 @@ function fillseats(LOCALFILE)
                     div3.className = "widget-content-left mr-3";
                     var img1 = document.createElement("img");
                     img1.className = "rounded-circle";
-                    var url1 = "{% static '" ;
-                    var url2 = "' %}";
+                    var url1 = "remodel/assets/images/avatars/";
+                    var url2 = ".jpg";
                     var url = url1.concat(customer[k].img);
                     url = url.concat(url2)
-                    img1.src = url;
+                    // img1.src = "{% static url %}";
+                    img1.src = "{% static 'remodel/assets/images/avatars/9.jpg' %}";
                     console.log(url)
                     element.appendChild(li1);
                     li1.appendChild(div1);
