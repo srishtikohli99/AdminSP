@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_list_or_404
-from .models import Vhigh,Med,High
+from .models import Vhigh,Med,High,Orders
 # Create your views here.
 
 from django.http import HttpResponse
@@ -101,15 +101,15 @@ def table(request):
         support = 0
         item = request.POST.get('select2')
         if sup == 'A':
-           support = 1
+           lift = 2
         elif sup == 'B':
-            support = 1.5
+            lift = 2.5
         else:
-            support = 1.8
+            lift = 3
         if item != "All":
-            data = High.objects.filter(question_text__contains=item).filter(sup__gte=support)
+            data = Orders.objects.filter(products__contains=item).filter(lift__gte=lift).order_by('lift')
         else:
-            data = High.objects.filter(sup__gte = support) #.filter(sup__lte = 1.90)
+            data = Orders.objects.filter(lift__gte = lift).order_by('lift') #.filter(sup__lte = 1.90)
         stu = {'data': data}
         print("hi")
         print(data)

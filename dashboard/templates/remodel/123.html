@@ -737,8 +737,10 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th> 
-                                                <th>List</th>
+                                                <th>Products</th>
                                                 <th>Support</th>
+                                                <th>Confidence</th>
+                                                <th>Lift</th>
                                                 
                                             </tr>
                                             </thead>
@@ -747,14 +749,16 @@
                                             {% for item in data %}
                                             <tr>
                                                 <th scope="row">{{item.ids}}</th> 
-                                                <td>{{item.question_text}}</td>
+                                                <td>{{item.products}}</td>
                                                 <td>{{item.sup}}</td>
+                                                <td>{{item.confidence}}</td>
+                                                <td>{{item.lift}}</td>
                                                 <!-- <td>@mdo</td> -->
                                             </tr>
                                             {% endfor %}
                                             </tbody>
                                             {% else %}
-                                            <p>No aasociations observed...</p>
+                                            <p>No asociations observed...</p>
                                             {% endif %}
                                             <!-- <tr>
                                                 <th scope="row">2</th>
