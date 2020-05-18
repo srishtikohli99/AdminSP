@@ -1,4 +1,5 @@
 from django.conf import settings
+# from settings import *
 import cv2
 import numpy as np 
 import os 
@@ -32,7 +33,7 @@ def objectDetect():
 	K.reset_uids()
 	tb._SYMBOLIC_SCOPE.value = True
 	print("called")
-	dir = os.path.join(settings.MEDIA_ROOT, "hello.jpeg")
+	dir = os.path.join(settings.BASE_DIR, "hello.jpg")
 	img = load_img(dir, target_size=(197,197))
 	x = img_to_array(img)
 	x = x.reshape(1,197,197,3).astype('float')
