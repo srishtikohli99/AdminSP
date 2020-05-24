@@ -102,10 +102,10 @@
                                 </div>
                                 <div class="widget-content-left  ml-3 header-user-info">
                                     <div class="widget-heading">
-                                        Alina Mclourd
+                                        Srishti Kohli
                                     </div>
                                     <div class="widget-subheading">
-                                        VP People Manager
+                                        Admin
                                     </div>
                                 </div>
                                 <div class="widget-content-right header-user-info ml-3">
@@ -1437,13 +1437,7 @@ function fillseats(LOCALFILE)
                     div3.className = "widget-content-left mr-3";
                     var img1 = document.createElement("img");
                     img1.className = "rounded-circle";
-                    var url1 = "remodel/assets/images/avatars/";
-                    var url2 = ".jpg";
-                    var url = url1.concat(customer[k].img);
-                    url = url.concat(url2)
-
-                    img1.src = "{% static 'remodel/assets/images/avatars/9.jpg' %}";
-                    console.log(url)
+                    img1.src = customer[k].img;
                     element.appendChild(li1);
                     li1.appendChild(div1);
                     div1.appendChild(div2);
