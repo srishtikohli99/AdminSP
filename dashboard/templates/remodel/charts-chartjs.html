@@ -1,3 +1,4 @@
+
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -852,4 +853,37 @@
         </div>
     </div>
 <script type="text/javascript" src="{% static 'remodel/assets/scripts/main.js' %}"></script></body>
+<script>
+    data = {
+    datasets: [{
+        data: [10, 20, 30,40,50],
+        backgroundColor: [
+        window.chartColors.red,
+        window.chartColors.orange,
+        window.chartColors.yellow,
+        window.chartColors.green,
+        window.chartColors.blue,
+      ],
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+        'Clothing',
+        'Electronics',
+        'Dairy',
+        'Groceries',
+        'Meat'
+    ]
+
+};
+    var t=document.getElementById("chart-area").getContext("2d");
+    console.log("here")
+    window.myPie=new Chart(t, {
+    type: 'pie',
+    data: data
+});
+    console.log("here")
+
+</script>
+
 </html>

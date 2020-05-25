@@ -33,7 +33,8 @@ class FileUploadView(APIView):
             
         #mod1 = objectDetect
             i = objectDetect()
-            return Response(i, status=status.HTTP_201_CREATED)
+            res = {"res":i}
+            return Response(res, status=status.HTTP_201_CREATED)
         else:
             return Response("fail", status=status.HTTP_400_BAD_REQUEST)
 
